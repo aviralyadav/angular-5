@@ -1,0 +1,51 @@
+<div class="">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10">
+            <h3>User Form</h3>
+            <form (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" ngModel required name="email" class="form-control" email #email="ngModel">
+                    <span class="help-block" style="color: red" *ngIf="!email.valid && email.touched">Please enter valid email</span>
+                </div>
+                <div class="form-group">
+                    <label for="subscription">Subscription</label>
+                    <select name="subscription" [ngModel]="subscription" class="form-control">
+                        <option value="basic">Basic</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="pro">Pro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" ngModel name="password" #password="ngModel" required class="form-control">
+                    <span style="color: red" class="help-block" *ngIf="!password.valid && password.touched">Please enter password</span>
+                </div>
+                <button [disabled]="!f.valid" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row" *ngIf="isSubmitted">
+        <div class="col-xs-12">
+            <h3>Your Data:</h3>
+            <table border="2" >
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Subscription</th>
+                    <td>{{ user.subscription }}</td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>{{ user.password }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
